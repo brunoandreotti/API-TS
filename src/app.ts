@@ -1,11 +1,16 @@
 //ENV variables
+import config from 'config'
 import dotenv from 'dotenv-safe'
-dotenv.config()
-
-import express from "express"
-import config from "config"
-import router from './routes/router'
+import express from 'express'
 import dbConnection from '../config/db'
+//Logger
+import Logger from '../config/logger'
+//Middelwares
+import morganMiddleware from './middleware/morganMiddleware'
+import router from './routes/router'
+
+//Dotenv
+dotenv.config()
 
 const app = express()
 
@@ -15,13 +20,20 @@ const PORT = config.get<number>('PORT')
 
 app.use(express.json())
 
-//Logger
-import Logger from '../config/logger'
+//Morgan
+app.use(morganMiddleware)
 
 //Rotas
 app.use('/api', router)
 
 app.listen(PORT, async () => {
-  await dbConnection()
+  try {
+    await dbConnection()
   Logger.info(`App rodando na porta ${PORT}`)
+  } catch (error) {
+    Logger.info(`Erro ao iniciar servidor: ${error}`)
+  }
+
+
+  
 })

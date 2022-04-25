@@ -11,6 +11,7 @@ async function connect() {
   } catch (e) {
     Logger.error(`Não foi possível conectar: ${e}`)
     process.exit(1)
+    
   }
 }
 
