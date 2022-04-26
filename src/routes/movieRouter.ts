@@ -1,13 +1,16 @@
-import {Router, Request, Response} from 'express'
-
+import { Router } from 'express'
 const router = Router()
+
 //Controllers
 import CreateMovieController from '../controllers/createMovieController'
 
+//Middlewares
+import { validate } from '../middleware/handleValidation'
+import { movieValidation } from '../middleware/movieValidation'
+
+
+
 //Rotas
-router.post('/create', CreateMovieController.handle)
-
-
+router.post('/create', movieValidation(), validate, CreateMovieController.handle)
 
 export default router
-
