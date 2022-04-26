@@ -16,7 +16,7 @@ class CreateMovieController {
 
     //Se já existir informa que já existe
     if (movieAlreadyExists) {
-      console.log('aqui')
+      
       return res.status(400).json({message: 'Filme já cadastrado'})
     }
 
