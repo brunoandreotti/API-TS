@@ -2,7 +2,9 @@
 
 class HandleTitleService {
   static execute(title: string) {
-    const newTitle = title.replace('-', ' ')
+    const regex = /-/g
+    const newTitle = title.replace(regex, ' ')
+    console.log(newTitle)
 
     return newTitle
   }
