@@ -3,14 +3,19 @@ import { Request, Response } from 'express'
 import Logger from '../../config/logger'
 //Service
 import FindMovieService from '../services/findMovieService'
+import HandleTitleService from '../services/handleTitleService'
 
 class FindMovieController {
   static async handle(req: Request, res: Response) {
     const title: string = req.params.title
 
+    const newTitle = HandleTitleService.execute(title)
+
+    console.log(newTitle)
+
     try {
       //Verifica se o filme já existe
-      const movie = await FindMovieService.execute(title)
+      const movie = await FindMovieService.execute(newTitle)
 
       //Se não existir 
       if (!movie) {
