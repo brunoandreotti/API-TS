@@ -7,7 +7,9 @@ import dbConnection from '../config/db'
 import Logger from '../config/logger'
 //Middelwares
 import morganMiddleware from './middleware/morganMiddleware'
-import router from './routes/router'
+
+//Router
+import router from './routes/movieRouter'
 
 //Dotenv
 dotenv.config()
@@ -24,7 +26,7 @@ app.use(express.json())
 app.use(morganMiddleware)
 
 //Rotas
-app.use('/api', router)
+app.use('/movie', router)
 
 app.listen(PORT, async () => {
   try {
