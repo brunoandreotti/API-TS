@@ -5,6 +5,7 @@ const router = Router()
 import CreateMovieController from '../controllers/createMovieController'
 import FindMovieController from '../controllers/findMovieController'
 import FindAllMoviesController from '../controllers/findAllMoviesControllers'
+import DeleteMovieController from '../controllers/deleteMovieController'
 
 //Middlewares
 import { validate } from '../middleware/handleValidation'
@@ -21,5 +22,8 @@ router.get('/', FindAllMoviesController.handle)
 
 //Rota deve encontrar um filme baseado no seu título
 router.get('/:title', FindMovieController.handle)
+
+//Rota deve deletar um filme baseado no seu título
+router.delete('/:title', DeleteMovieController.handle)
 
 export default router

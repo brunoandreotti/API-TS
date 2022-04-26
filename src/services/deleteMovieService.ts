@@ -3,15 +3,15 @@ import { MovieModel } from '../models/MovieModel'
 //Type
 import { Movie } from '../types/MovieType'
 
-class CreateMovieService {
+class DeleteMovieService {
   static async execute(data: Movie) {
     try {
-      const movie = await MovieModel.create(data)
-      return movie
+      return await MovieModel.deleteOne(data)
+      
     } catch (error) {
       return error
     }
   }
 }
 
-export default CreateMovieService
+export default DeleteMovieService
